@@ -6,9 +6,29 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
 ## R Markdown
 ### __Graphical Observations__
+
+```{r echo=FALSE}
+library(palmerpenguins)
+library(tidyverse)
+library(ggplot2)
+mydata <- na.omit(penguins)
+```
+
+
+``` {r}
+c1 <- rgb(135,206,235,max = 255, alpha = 80, names = "lt.blue")
+c2 <- rgb(255,192,203, max = 255, alpha = 80, names = "lt.pink")
+c3 <- rgb(255,165,0, max = 255, alpha = 80, names = "lt.green")
+
+hist(penguins[penguins$species == "Adelie",]$body_mass_g, col=c1, xlim=c(2600,6500), ylim=c(0,50), main="Graphical exploration", xlab="Body Mass (g)", ylab="Frequency")
+hist(penguins[penguins$species == "Chinstrap",]$body_mass_g, col=c2, add=TRUE)
+hist(penguins[penguins$species == "Gentoo",]$body_mass_g, col=c3, add=TRUE)
+legend("topright", c("Adelie", "Chinstrap", "Gentoo"), fill=c(c1, c2, c3))
+```
+
 
